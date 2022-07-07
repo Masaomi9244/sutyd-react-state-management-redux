@@ -1,5 +1,7 @@
 import type { NextPage } from "next";
 import { ComponentProps, Dispatch, SetStateAction } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "src/state";
 import { Todo } from "src/types";
 
 type Props = {
@@ -7,6 +9,7 @@ type Props = {
 };
 
 const Add: NextPage<Props> = ({ setTodos }) => {
+  const todos = useSelector((state: RootState) => state.todos);
   const handleSubmit: ComponentProps<"form">["onSubmit"] = (event) => {
     event.preventDefault();
     const text = event.currentTarget.text.value;

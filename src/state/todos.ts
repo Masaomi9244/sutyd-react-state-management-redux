@@ -14,7 +14,10 @@ const TODOS: Todo[] = [
 
 type Action = ReturnType<typeof addTodo>;
 
-const todosReducer: Reducer<Todo[], Action> = (state = TODOS, action) => {
+export const todosReducer: Reducer<Todo[], Action> = (
+  state = TODOS,
+  action
+) => {
   switch (action.type) {
     case ADD_TODO: {
       const newTodo = {
