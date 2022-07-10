@@ -1,22 +1,15 @@
 import type { NextPage } from "next";
-import { ComponentProps, Dispatch, SetStateAction } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "src/state";
-import { Todo } from "src/types";
+import { ComponentProps } from "react";
+import { useDispatch } from "react-redux";
+import { addTodo } from "src/state/todos";
 
-type Props = {
-  setTodos: Dispatch<SetStateAction<Todo[]>>;
-};
+const Add: NextPage = () => {
+  const dispatch = useDispatch();
 
-const Add: NextPage<Props> = ({ setTodos }) => {
-  const todos = useSelector((state: RootState) => state.todos);
   const handleSubmit: ComponentProps<"form">["onSubmit"] = (event) => {
     event.preventDefault();
     const text = event.currentTarget.text.value;
-    setTodos((prevTodos) => {
-      const newTodo = { id: prevTodos.length + 1, text, isDone: false };
-      return [...prevTodos, newTodo];
-    });
+    dispatch(addTodo(text));
     event.currentTarget.reset();
   };
   return (

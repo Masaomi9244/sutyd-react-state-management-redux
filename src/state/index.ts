@@ -1,4 +1,4 @@
-import { combineReducers, legacy_createStore } from "redux";
+import { combineReducers, legacy_createStore, Store } from "redux";
 import { todosReducer } from "src/state/todos";
 
 export const store = legacy_createStore(
