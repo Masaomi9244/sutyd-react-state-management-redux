@@ -1,9 +1,9 @@
 import { FC } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "src/state";
+import { Todo } from "src/types";
 
-type Props = {
-  todoCounter: number;
-};
-
-export const ToDoCounter: FC<Props> = ({ todoCounter }) => {
-  return <h2>TODO: {todoCounter}件</h2>;
+export const ToDoCounter: FC = () => {
+  const todos: Todo[] = useSelector((state: RootState) => state.todos);
+  return <h2>TODO: {todos.length}件</h2>;
 };
